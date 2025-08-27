@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Carbon Footprint Tracker</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h2> Your  Carbon  Tracker</h2>
+
+  <div class="calculator">
+    <label for="kmDriven">Kilometers Driven:</label>
+    <input type="number" id="kmDriven" placeholder="e.g. 50">
+
+    <label for="diet">Diet Type:</label>
+    <select id="diet">
+      <option value="low">Vegan</option>
+      <option value="medium">Vegetarian</option>
+      <option value="high">Meat-heavy</option>
+    </select>
+
+    <button onclick="calculateCO2()">Calculate</button>
+
+    <div id="result"></div>
+    <div id="tip"></div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
