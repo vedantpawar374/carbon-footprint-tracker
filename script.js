@@ -195,12 +195,20 @@ function showChart() {
 function login() {
   const email = document.getElementById('email').value;
   const password = document.getElementById('password').value;
-  auth.signInWithEmailAndPassword(email, password)
-    .then(user => {
-      document.getElementById('userStatus').innerText = "Logged in as " + user.user.email;
-    })
-    .catch(error => {
-      document.getElementById('userStatus').innerText = error.message;
+  firebase.auth().signInWithEmailAndPassword(email, password)
+    .catch((error) => {
+      if (error.code === 'auth/user-not-found') {
+        // Optional: automatically create user
+        return firebase.auth().createUserWithEmailAndPassword(email, password)
+          .then(user => {
+            document.getElementById('userStatus').innerText = "Account created for " + user.user.email;
+          })
+          .catch(err => {
+            document.getElementById('userStatus').innerText = err.message;
+          });
+      } else {
+        document.getElementById('userStatus').innerText = error.message;
+      }
     });
 }
 
@@ -209,7 +217,11 @@ function register() {
   const password = document.getElementById('password').value;
   auth.createUserWithEmailAndPassword(email, password)
     .then(user => {
-      document.getElementById('userStatus').innerText = "Registered as " + user.user.email;
+      document.getElementById('userStatus').innerText = "Registration successful! Please log in.";
+      // Redirect to login page after a short delay
+      setTimeout(() => {
+        window.location.href = "login.html";
+      }, 1500);
     })
     .catch(error => {
       document.getElementById('userStatus').innerText = error.message;
