@@ -6,8 +6,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2> Your  Carbon  Tracker</h2>
-
+  <h2>Your Carbon Tracker</h2>
+  <button class="logout-btn" onclick="logout()">Logout</button>
   <div class="calculator">
     <label for="kmDriven">Kilometers Driven:</label>
     <input type="number" id="kmDriven" placeholder="e.g. 50">
@@ -26,6 +26,9 @@
   </div>
   <canvas id="co2Chart" width="400" height="200"></canvas>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-auth-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.0/firebase-firestore-compat.js"></script>
   <script src="script.js"></script>
 </body>
 </html>
